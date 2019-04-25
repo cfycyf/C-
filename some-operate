@@ -24,8 +24,8 @@ struct mtd_info_user
 
 struct erase_info_user
 {
-	unsigned int    start;	// bit
-	unsigned int    length;	// bit
+	unsigned int    start;	// byte
+	unsigned int    length;	// byte
 };
 
 #define MEMGETINFO	_IOR('M', 1, struct mtd_info_user)
