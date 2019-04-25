@@ -1,0 +1,53 @@
+
+
+1. remove
+#include <stdio.h>
+int remove(const char *pathname); ture = 0;
+
+2. mkdir
+#include <sys/stat.h>
+#include <sys/types.h>
+int mkdir(const char *pathname, mode_t mode); ture = 0;
+
+e.g. mkdir("/tmp/dmm-log/", 0755);
+
+3. chdir
+#include <unistd.h>
+int chdir(const char *path); ture = 0;
+
+4. access
+#include <unistd.h>
+int access(const char *pathname, int mode); ture = 0;
+mode: R_OK W_OK X_OK F_OK
+
+5. localtime
+#include <time.h>
+struct tm *localtime(const time_t *timep);
+struct tm {
+               int tm_sec;    /* Seconds (0-60) */
+               int tm_min;    /* Minutes (0-59) */
+               int tm_hour;   /* Hours (0-23) */
+               int tm_mday;   /* Day of the month (1-31) */
+               int tm_mon;    /* Month (0-11) */
+               int tm_year;   /* Year - 1900 */
+               int tm_wday;   /* Day of the week (0-6, Sunday = 0) */
+               int tm_yday;   /* Day in the year (0-365, 1 Jan = 0) */
+               int tm_isdst;  /* Daylight saving time */
+           };
+
+6. time
+#include <time.h>
+time_t time(time_t *tloc);
+e.g. time_t t; time(&t);
+
+7. signal
+#include <signal.h>
+sighandler_t signal(int signum, sighandler_t handler);
+e.g. signal(SIGUSR2, sig_hand);
+	 sig_hand(int sig){ if(sig == SIGUSR2){...}}
+
+
+
+
+
+
