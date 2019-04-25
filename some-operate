@@ -1,0 +1,43 @@
+
+
+1. char2int_num: int a = char c - '0'
+
+2. struct dmm_voltage vol;
+	memset(&vol, 0, sizeof(vol));
+	dmmread(devfd, (char*)&vol, sizeof(vol));
+
+3. Output completion %02d 
+	e.g. int a = 1; ("%02d", a) == 01;
+
+4. ioctrl erase nand flash
+struct mtd_info_user
+{
+	unsigned char   type;
+	unsigned int    flags;
+	unsigned int    size;		/* Total size of the MTD */
+	unsigned int    erasesize;
+	unsigned int    oobblock;	/* Size of OOB blocks (e.g. 512) */
+	unsigned int    oobsize;	/* Amount of OOB data per block (e.g. 16) */
+	unsigned int    ecctype;
+	unsigned int    eccsize;
+};
+
+struct erase_info_user
+{
+	unsigned int    start;	// bit
+	unsigned int    length;	// bit
+};
+
+#define MEMGETINFO	_IOR('M', 1, struct mtd_info_user)
+#define MEMERASE	_IOW('M', 2, struct erase_info_user)
+struct mtd_info_user mtdInfo;
+	struct erase_info_user mtdEraseInfo;
+	memset(&mtdInfo, 0x00, sizeof(struct mtd_info_user));
+	memset(&mtdEraseInfo, 0x00, sizeof(struct erase_info_user));
+	if (ioctl(fd, MEMGETINFO, &mtdInfo) == 0) {
+		mtdEraseInfo.start = (pos/64) * mtdInfo.erasesize; // block * erasesize
+		mtdEraseInfo.length = mtdInfo.erasesize;	// 131072 = 128K
+		ioctl(fd, MEMERASE, &mtdEraseInfo);
+	}
+
+
