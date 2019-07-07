@@ -1,0 +1,5 @@
+socket函数
+1. TCP是一个字节流协议，仅支持SOCK_STREAM套接字
+2. Liunx支持一个新的套接字类型SOCK_PACKET，它与BPF类似，支持对数据链路的访问，详细在第29章叙述
+
+所有客户和服务器都从调用socket开始，它返回一个套接字描述符。客户随后调用connect，服务器则调用bind，listen和accept。
