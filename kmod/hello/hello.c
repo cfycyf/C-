@@ -9,6 +9,15 @@
 #include <linux/kernel.h>     /* KERN_INFO在这里 */
 #include <linux/init.h>       /* 使用的宏 */
 
+#include <linux/ip.h>
+#include <linux/tcp.h>
+#include <linux/module.h>
+#include <linux/netfilter.h>
+#include <linux/version.h>
+#include <linux/netlink.h>
+#include <linux/module.h>
+
+
 MODULE_LICENSE("GPL");
 
 MODULE_AUTHOR("cfycyf");
@@ -20,6 +29,7 @@ MODULE_VERSION("4.15");
 static int __init hello_init(void)
 {
 	printk(KERN_INFO "Init Hello World\n");
+	printk(KERN_INFO, "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxLINUX_VERSION_CODE=%ld\n",LINUX_VERSION_CODE);
 	return 0;
 }
  
